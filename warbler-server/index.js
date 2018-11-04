@@ -5,6 +5,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser')
 const errorHandler = require('./handlers/error')
 const authRoutes = require('./routes/auth');
+const messagesRoutes = require('./routes/messages')
 const db = require('./models')
 const PORT = 8081;
 
@@ -14,6 +15,7 @@ app.use(bodyParser.json());
 //routes will come here.
 
 app.use('/api/auth', authRoutes);
+app.use('/api/users/:id/messages', messagesRoutes)
 
 app.use((req,res,next) => {
     let err = new Error('Not Founded');
