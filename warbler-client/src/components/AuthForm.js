@@ -9,7 +9,6 @@ export default class AuthForm extends Component {
             password: "",
             profileImageUrl: ""
         }
-        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleChange = e => {
@@ -17,22 +16,27 @@ export default class AuthForm extends Component {
             [e.target.name]: e.target.value
         })
     }
-    handleSubmit(e) {
+    handleSubmit = e => {
         e.preventDefault();
-        const authType = this.props.singUp ? "signup" : "signin";
+        const authType = this.props.signUp ? "signup" : "signin";
         this.props.onAuth(authType, this.state).then(() => {
-            console.log("LOGGED IN SUCCEFULLY!")
+            this.props.history.push('/');
+        })
+        .catch(()=> {
+            return;
         })
     }
 
     render() {
         const {email, username, password, profileImageUrl} = this.state;
-        const {heading, buttonText, signUp} = this.props;
+        const {heading, buttonText, signUp, errors, removeError, history} = this.props;
+        history.listen(() => { removeError() }) 
         return (
             <div>
                 <div className="row justify-content-md-center text-center">
                     <div className="col-md-6">
                         <form onSubmit={this.handleSubmit}>
+                            {errors.message && <div className="alert alert-danger">{errors.message}</div>}
                             <h2>{heading}</h2>
                             <label htmlFor="email">Email:</label>
                             <input className="form-control" 
