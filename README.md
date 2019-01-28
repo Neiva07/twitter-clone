@@ -4,12 +4,12 @@ A full-stack app cloning Twitter
 Technologies:
 
 Front-End:
-      React
-      Redux
+      React,
+      Redux,
       Bootstrap
  
 
 Back-End:
-      Node
-      Express
+      Node,
+      Express,
       MongoDB
