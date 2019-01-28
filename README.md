@@ -7,6 +7,8 @@ Front-End:
       React
       Redux
       Bootstrap
+ 
+
 Back-End:
       Node
       Express
